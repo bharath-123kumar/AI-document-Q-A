@@ -1,0 +1,33 @@
+# ─────────────────────────────────────────────────────────────
+# RAG Document Q&A Bot — Python Dependencies
+# Install with: pip install -r requirements.txt
+# Requires Python 3.11+
+# ─────────────────────────────────────────────────────────────
+
+# Document ingestion
+pypdf                     # Pure-Python PDF parsing
+python-docx               # DOCX support
+reportlab                 # PDF generation support
+
+# Text chunking
+langchain-text-splitters
+
+# Embeddings
+sentence-transformers
+torch                     # PyTorch backend for sentence-transformers
+
+# Vector database
+chromadb
+
+# LLM — Google Gemini
+google-generativeai
+
+# Environment & config
+python-dotenv
+
+# Web UI
+streamlit
+
+# Utilities
+rich                      # Pretty CLI output
+tqdm                      # Progress bars

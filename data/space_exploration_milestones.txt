@@ -1,0 +1,17 @@
+# Milestones in Space Exploration: From Sputnik to Mars
+
+Space exploration represents one of the greatest technological achievements of humanity. Over the past seventy years, we have transitioned from sending simple radio signals from orbit to planning manned missions to Mars and deploying deep-space telescopes that peer back to the dawn of the universe.
+
+## The Early Space Age (1957–1969)
+The modern space race began on October 4, 1957, when the Soviet Union launched Sputnik 1, the first artificial satellite, into orbit. This event shocked the Western world and catalyzed the establishment of NASA in 1958. 
+
+The Soviet Union achieved several more "firsts," including sending Yuri Gagarin into space aboard Vostok 1 in 1961. However, the United States focused its efforts on the Apollo program, aimed at landing a human on the Moon. This culminated on July 20, 1969, when Apollo 11 astronauts Neil Armstrong and Buzz Aldrin stepped onto the lunar surface, declaring it "one giant leap for mankind."
+
+## The Shuttle Era and the ISS (1981–2011)
+Following the Apollo missions, NASA shifted focus to reusable spacecraft. The Space Shuttle program, launched in 1981, enabled the deployment of the Hubble Space Telescope in 1990 and the construction of the International Space Space (ISS) beginning in 1998. The ISS, a collaborative effort between NASA, Roscosmos, ESA, JAXA, and CSA, has been continuously occupied since November 2000, serving as a critical microgravity laboratory.
+
+## The Commercial Space Revolution (2010s–Present)
+In the 21st century, space exploration transitioned from purely government-funded initiatives to a dynamic commercial sector. Companies like SpaceX, Blue Origin, and Rocket Lab introduced reusable rockets, dramatically lowering the cost of reaching orbit. SpaceX's Falcon 9 became the workhorse of global satellite delivery, and their Dragon spacecraft restored NASA's capability to launch astronauts from American soil.
+
+## Future Horizons: Artemis and Mars
+Today, NASA's Artemis program aims to return humans to the Moon, including the first woman and person of color, using the Space Launch System (SLS) and the Orion spacecraft. Artemis is designed to establish a sustainable presence on the Moon and serve as a stepping stone for the ultimate goal: sending humans to Mars by the late 2030s. Robotic missions, such as the Perseverance rover on Mars and the James Webb Space Telescope, continue to expand our scientific understanding of the cosmos daily.
