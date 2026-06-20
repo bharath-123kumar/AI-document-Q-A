@@ -1,6 +1,14 @@
 import os
 from pathlib import Path
 
+# Try importing optional document-generation libraries up front
+try:
+    import docx as _docx
+    HAS_DOCX = True
+except ImportError:
+    HAS_DOCX = False
+    print("WARNING: 'python-docx' not installed. DOCX file will be saved as .txt instead.")
+
 # Create data directory
 data_dir = Path("data")
 data_dir.mkdir(exist_ok=True)
@@ -70,52 +78,89 @@ with open(data_dir / "climate_change_mitigation_strategies.txt", "w", encoding="
 
 print("Text files generated.")
 
-# 2. Generate DOCX file
-import docx
-doc = docx.Document()
-doc.add_heading("Python Programming Fundamentals: A Comprehensive Guide", level=1)
-
-p1 = doc.add_paragraph(
+# 2. Generate DOCX file (falls back to .txt if python-docx is unavailable)
+doc_python_content = (
+    "Python Programming Fundamentals: A Comprehensive Guide\n"
+    "=" * 55 + "\n\n"
     "Python is an interpreted, high-level, general-purpose programming language. Created by Guido van Rossum and first "
     "released in 1991, Python's design philosophy emphasizes code readability with its notable use of significant whitespace. "
     "Its language constructs and object-oriented approach aim to help programmers write clear, logical code for small "
-    "and large-scale projects."
-)
-
-doc.add_heading("1. Variables and Dynamic Typing", level=2)
-p2 = doc.add_paragraph(
+    "and large-scale projects.\n\n"
+    "1. Variables and Dynamic Typing\n"
+    "-" * 35 + "\n"
     "Unlike statically typed languages like Java or C++, Python uses dynamic typing. This means you do not need to explicitly "
     "declare the variable type before using it; Python infers the type at runtime based on the value assigned. For example, "
     "writing `x = 10` makes `x` an integer, and writing `x = 'Hello'` reassigns it to a string. While this speeds up development, "
-    "it requires developers to write rigorous unit tests to avoid runtime type errors."
-)
-
-doc.add_heading("2. Built-in Data Structures", level=2)
-p3 = doc.add_paragraph(
+    "it requires developers to write rigorous unit tests to avoid runtime type errors.\n\n"
+    "2. Built-in Data Structures\n"
+    "-" * 35 + "\n"
     "Python includes several powerful built-in data structures:\n"
-    "• Lists: Ordered, mutable collections of items, written with square brackets (e.g., [1, 2, 3]).\n"
-    "• Dictionaries: Unordered key-value stores, written with curly braces (e.g., {'name': 'Alice', 'age': 25}). Key lookups are O(1) on average.\n"
-    "• Sets: Unordered collections of unique elements, useful for membership testing and mathematical operations like union and intersection.\n"
-    "• Tuples: Ordered, immutable sequences of elements, written with parentheses (e.g., (1, 2, 3))."
-)
-
-doc.add_heading("3. Object-Oriented Programming (OOP)", level=2)
-p4 = doc.add_paragraph(
+    "  - Lists: Ordered, mutable collections of items, written with square brackets (e.g., [1, 2, 3]).\n"
+    "  - Dictionaries: Unordered key-value stores, written with curly braces (e.g., {'name': 'Alice', 'age': 25}). Key lookups are O(1) on average.\n"
+    "  - Sets: Unordered collections of unique elements, useful for membership testing and mathematical operations like union and intersection.\n"
+    "  - Tuples: Ordered, immutable sequences of elements, written with parentheses (e.g., (1, 2, 3)).\n\n"
+    "3. Object-Oriented Programming (OOP)\n"
+    "-" * 35 + "\n"
     "Python fully supports Object-Oriented Programming. Classes are defined using the `class` keyword. The constructor is "
     "defined as `__init__`, which accepts `self` as the first argument representing the instance. Python supports multiple inheritance, "
-    "operator overloading, and polymorphism. Under the hood, Python objects are backed by dictionaries, which store their attributes."
-)
-
-doc.add_heading("4. Advanced Constructs: Decorators and Generators", level=2)
-p5 = doc.add_paragraph(
+    "operator overloading, and polymorphism. Under the hood, Python objects are backed by dictionaries, which store their attributes.\n\n"
+    "4. Advanced Constructs: Decorators and Generators\n"
+    "-" * 35 + "\n"
     "Advanced Python features allow developers to write elegant and performant code. Decorators are functions that modify the "
     "behavior of another function or class. They use the `@decorator_name` syntax. Generators are functions that return an "
     "iterator using the `yield` keyword. Unlike standard functions that return a full collection at once, generators yield "
-    "values one at a time, making them highly memory-efficient when working with massive streams of data."
+    "values one at a time, making them highly memory-efficient when working with massive streams of data.\n"
 )
 
-doc.save(data_dir / "python_programming_fundamentals.docx")
-print("DOCX file generated.")
+if HAS_DOCX:
+    try:
+        doc = _docx.Document()
+        doc.add_heading("Python Programming Fundamentals: A Comprehensive Guide", level=1)
+        doc.add_paragraph(
+            "Python is an interpreted, high-level, general-purpose programming language. Created by Guido van Rossum and first "
+            "released in 1991, Python's design philosophy emphasizes code readability with its notable use of significant whitespace. "
+            "Its language constructs and object-oriented approach aim to help programmers write clear, logical code for small "
+            "and large-scale projects."
+        )
+        doc.add_heading("1. Variables and Dynamic Typing", level=2)
+        doc.add_paragraph(
+            "Unlike statically typed languages like Java or C++, Python uses dynamic typing. This means you do not need to explicitly "
+            "declare the variable type before using it; Python infers the type at runtime based on the value assigned. For example, "
+            "writing `x = 10` makes `x` an integer, and writing `x = 'Hello'` reassigns it to a string. While this speeds up development, "
+            "it requires developers to write rigorous unit tests to avoid runtime type errors."
+        )
+        doc.add_heading("2. Built-in Data Structures", level=2)
+        doc.add_paragraph(
+            "Python includes several powerful built-in data structures:\n"
+            "\u2022 Lists: Ordered, mutable collections of items, written with square brackets (e.g., [1, 2, 3]).\n"
+            "\u2022 Dictionaries: Unordered key-value stores, written with curly braces. Key lookups are O(1) on average.\n"
+            "\u2022 Sets: Unordered collections of unique elements, useful for membership testing and mathematical operations.\n"
+            "\u2022 Tuples: Ordered, immutable sequences of elements, written with parentheses (e.g., (1, 2, 3))."
+        )
+        doc.add_heading("3. Object-Oriented Programming (OOP)", level=2)
+        doc.add_paragraph(
+            "Python fully supports Object-Oriented Programming. Classes are defined using the `class` keyword. The constructor is "
+            "defined as `__init__`, which accepts `self` as the first argument representing the instance. Python supports multiple inheritance, "
+            "operator overloading, and polymorphism. Under the hood, Python objects are backed by dictionaries, which store their attributes."
+        )
+        doc.add_heading("4. Advanced Constructs: Decorators and Generators", level=2)
+        doc.add_paragraph(
+            "Advanced Python features allow developers to write elegant and performant code. Decorators are functions that modify the "
+            "behavior of another function or class. They use the `@decorator_name` syntax. Generators are functions that return an "
+            "iterator using the `yield` keyword. Unlike standard functions that return a full collection at once, generators yield "
+            "values one at a time, making them highly memory-efficient when working with massive streams of data."
+        )
+        doc.save(data_dir / "python_programming_fundamentals.docx")
+        print("DOCX file generated.")
+    except Exception as e:
+        print(f"Failed to generate DOCX: {e}. Falling back to .txt")
+        with open(data_dir / "python_programming_fundamentals.txt", "w", encoding="utf-8") as f:
+            f.write(doc_python_content)
+        print("Python guide saved as .txt (docx fallback).")
+else:
+    with open(data_dir / "python_programming_fundamentals.txt", "w", encoding="utf-8") as f:
+        f.write(doc_python_content)
+    print("Python guide saved as .txt (python-docx not available).")
 
 # 3. Generate PDF file using ReportLab
 try:

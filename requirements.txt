@@ -5,16 +5,16 @@
 # ─────────────────────────────────────────────────────────────
 
 # Document ingestion
-pypdf                     # Pure-Python PDF parsing
-python-docx               # DOCX support
-reportlab                 # PDF generation support
+pypdf
+python-docx
+reportlab
 
 # Text chunking
 langchain-text-splitters
 
 # Embeddings
 sentence-transformers
-torch                     # PyTorch backend for sentence-transformers
+torch
 
 # Vector database
 chromadb
@@ -29,5 +29,5 @@ python-dotenv
 streamlit
 
 # Utilities
-rich                      # Pretty CLI output
-tqdm                      # Progress bars
+rich
+tqdm
