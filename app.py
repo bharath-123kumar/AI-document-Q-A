@@ -154,6 +154,11 @@ with st.sidebar:
 if doc_count == 0:
     st.warning("⚠️ The vector database is empty! Please click below to generate sample documents and index them.")
     
+    # Check if we have files in the data directory
+    has_files = False
+    if data_dir.exists():
+        has_files = any(file.is_file() and file.suffix.lower() in [".pdf", ".docx", ".txt", ".md"] for file in data_dir.iterdir())
+
     col1, col2 = st.columns(2)
     with col1:
         if st.button("Step 1: Generate Sample Documents", use_container_width=True):
@@ -166,7 +171,15 @@ if doc_count == 0:
                 else:
                     st.error(f"Error generating files: {result.stderr}")
     with col2:
-        st.button("Step 2: Index Documents", disabled=True, use_container_width=True)
+        if st.button("Step 2: Index Documents", disabled=not has_files, use_container_width=True):
+            import subprocess
+            with st.spinner("Indexing documents (generating embeddings and storing in ChromaDB)..."):
+                result = subprocess.run(["python", "index.py"], capture_output=True, text=True)
+                if result.returncode == 0:
+                    st.success("Indexing completed successfully!")
+                    st.rerun()
+                else:
+                    st.error(f"Error indexing documents: {result.stderr}\n\nConsole output:\n{result.stdout}")
 
 else:
     # Set up Retriever and Generator
